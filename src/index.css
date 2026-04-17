@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+  --utzac-green: #16a34a;
+  --utzac-green-dark: #15803d;
+  --utzac-green-light: #dcfce7;
+  --utzac-emerald: #059669;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+}
