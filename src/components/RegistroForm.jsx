@@ -129,12 +129,14 @@ export default function RegistroForm() {
       setSuccess(true)
       setForm(INITIAL_FORM)
     } catch (err) {
-      console.error(err)
-      setServerError(
-        err?.message?.includes('duplicate')
-          ? 'Este correo ya fue registrado anteriormente.'
-          : 'Ocurrió un error al enviar tu solicitud. Intenta nuevamente.'
-      )
+      console.error("Supabase Error:", err)
+      const errorMsg = err?.message || err?.details || JSON.stringify(err)
+      
+      if (errorMsg.includes('duplicate') || err?.code === '23505') {
+        setServerError('Este correo electrónico ya ha sido registrado. Un asesor pronto se comunicará contigo.')
+      } else {
+        setServerError('Ocurrió un error al enviar tu solicitud. Intenta nuevamente o verifica tu conexión.')
+      }
     } finally {
       setLoading(false)
     }
